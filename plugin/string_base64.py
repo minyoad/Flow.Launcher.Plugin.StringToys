@@ -6,7 +6,7 @@ class StringPath(BasePlugin):
     
     def is_base64(self,text):
         try:
-            base64.b64decode(text)
+            base64.b64decode(text).decode()
             return True
         except:
             return False
