@@ -2,7 +2,7 @@
     "ID": "06c2e404-65ae-476b-988f-26f4b94f49a2",
     "ActionKeyword": "*",
     "Name": "String Toys ",
-    "Description": "String utils Plugin for Flow Launcher",
+    "Description": "String Utils Plugin for Flow Launcher",
     "Author": "minyoad@gmail.com",
     "Version": "1.0.0",
     "Language": "python",
