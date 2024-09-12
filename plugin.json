@@ -4,7 +4,7 @@
     "Name": "String Toys ",
     "Description": "String Utils Plugin for Flow Launcher",
     "Author": "minyoad@gmail.com",
-    "Version": "1.0.0",
+    "Version": "1.0.1",
     "Language": "python",
     "Website": "https://github.com/minyoad/Flow.Launcher.Plugin.StringToys",
     "IcoPath": "Images\\app.png",
