@@ -8,5 +8,7 @@
     "Language": "python",
     "Website": "https://github.com/minyoad/Flow.Launcher.Plugin.StringToys",
     "IcoPath": "Images\\app.png",
-    "ExecuteFileName": "main.py"
+    "ExecuteFileName": "main.py",
+	"vlc_path": "C:\\Program Files\\VideoLAN\\VLC\\vlc.exe",
+    "ffplay_path": "D:\\Tools\\ffmpeg\\bin\\ffplay.exe"
 }

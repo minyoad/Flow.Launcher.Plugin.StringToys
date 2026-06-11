@@ -10,11 +10,9 @@ class StringPath(BasePlugin):
             return True
         except:
             return False
-         
+
     
-    def get_results(self,query):
-        
-        #check if query contains / ,then converto to \\
+    def get_results(self,query):        
         items=[]                                  
             
         if self.is_base64(query):

@@ -12,15 +12,23 @@ import importlib
 import pyperclip 
 import inspect
 
-from plugin import *
+from plugin.base import BasePlugin
 
 PLUGIN_DIR='plugin'
 PLUGIN_PREFIX='string_'
 
 class StringToys(FlowLauncher):
 
-    def load_plugins(self):
+    def __init__(self):
+        super().__init__()
+
+    def _load_plugins_if_needed(self):
+        if not hasattr(self, 'plugins'):
+            self.plugins = self._load_plugins()
+
+    def _load_plugins(self):
         plugins = []
+        settings = self.rpc_request.get("settings") or {}
         for filename in os.listdir(PLUGIN_DIR):
             if filename.startswith(PLUGIN_PREFIX) and filename.endswith('.py'):
                 module_name = filename[:-3]
@@ -28,19 +36,18 @@ class StringToys(FlowLauncher):
                 for name in dir(module):
                     obj = getattr(module, name)
                     if inspect.isclass(obj) and issubclass(obj, BasePlugin) and obj != BasePlugin:
-                        plugins.append(obj())
+                        plugins.append(obj(settings))
                     
         return plugins
     
                 
     def query(self, query):
-        
+        self._load_plugins_if_needed()
         if query is None or query.strip() == '':
             return []
         
-        plugins = self.load_plugins()
         items=[]
-        for plugin in plugins:
+        for plugin in self.plugins:
             subitems=plugin.get_results(query)
             if subitems is not None:
                 for subitem in subitems:
@@ -53,6 +60,11 @@ class StringToys(FlowLauncher):
 
     def copy_text(self, text):
         pyperclip.copy(text)
+        
+    def run_plugin_method(self, value, method_name):
+        self._load_plugins_if_needed()
+        for plugin in self.plugins:
+            plugin.run_method(value, method_name)
         
 
 if __name__ == "__main__":
